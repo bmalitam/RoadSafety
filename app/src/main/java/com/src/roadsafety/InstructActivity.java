@@ -17,90 +17,41 @@ package com.src.roadsafety;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.webkit.WebView;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 //import com.tusi.OnlineDoc.DataLists.*;
 //import com.tusi.OnlineDoc.ui.SectionsPagerAdapter;
 //import com.tusi.OnlineDoc.viewholder.usertype;
-import com.src.roadsafety.databinding.ActivityMainBinding;
 
 
-public class MainActivity extends AppCompatActivity {
+public class InstructActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "Instruct";
     public static final String ANONYMOUS = "anonymous";
     private SharedPreferences mSharedPreferences;
     private GoogleSignInClient mSignInClient;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseDatabase mDatabase;
     final String[] userType = {ANONYMOUS};
-    ImageButton miros;
-    ImageButton instruct;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance();
+        setContentView(R.layout.scroll_screen_instruct);
+        WebView browser = (WebView) findViewById(R.id.wbview);
+        browser.loadUrl("https://pdfcookie.com/documents/drivers-education-curriculum-jpj-malaysiapdf-nvogn6my7328");
 
-//        if (mFirebaseAuth.getCurrentUser() == null) {
-//            // Not signed in, launch the Sign In activity
-//            startActivity(new Intent(this, SignInActivity.class));
-//            finish();
-//            return;
-//        } else {
-////
-//////
-////
-//        }
-
-
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-//        mSignInClient = GoogleSignIn.getClient(this, gso);
-
-        setContentView(R.layout.activity_main);
-        miros = (ImageButton) findViewById(R.id.MIROS);
-        instruct = (ImageButton) findViewById(R.id.DrivingInstruction);
-        miros.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-
-                Intent i = new Intent(MainActivity.this, MirosActivity.class);
-                startActivity(i);
-
-            }
-            });
-        instruct.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-
-                Intent i = new Intent(MainActivity.this, InstructActivity.class);
-                startActivity(i);
-
-            }
-        });
 
     }
 
@@ -130,14 +81,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private String getUserName() {
-        FirebaseUser user = mFirebaseAuth.getCurrentUser();
-        if (user != null) {
-            return user.getDisplayName();
-        }
-
-        return ANONYMOUS;
-    }
 
 
 }

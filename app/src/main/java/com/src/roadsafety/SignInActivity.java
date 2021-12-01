@@ -61,9 +61,6 @@ public class SignInActivity extends AppCompatActivity {
         mBinding = ActivitySignInBinding.inflate(getLayoutInflater());
 
 
-
-        String name = user.getDisplayName();
-
         setContentView(mBinding.getRoot());
         mFirebaseAuth = FirebaseAuth.getInstance();
         // Set click listeners
@@ -89,30 +86,26 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//This is where the user type is set during sign on
-//        String userTypevar = new setUserType().checkUserTypeSwitch(usertypeswitch);
-//        ((ApplicationVariable) this.getApplication()).setUserTypeVariable(userTypevar);
 
 //         Result returned from launching the Intent in signIn()
         if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-            }
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            try {
+//                // Google Sign In was successful, authenticate with Firebase
+//                GoogleSignInAccount account = task.getResult(ApiException.class);
+//                firebaseAuthWithGoogle(account);
+//
+//            } catch (ApiException e) {
+//                // Google Sign In failed, update UI appropriately
+//
+//                Log.w(TAG, "Google sign in failed", e);
+//
+//            }
+            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            finish();
         }
 
-//        try{
-//           //todo: check if the database for this person exists
-//        }
-//        catch(ApiException e)
-//        {
-//            Log.w(TAG, "Google sign in failed", e);
-//        }
+
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -125,7 +118,7 @@ public class SignInActivity extends AppCompatActivity {
                         // If sign in succeeds the auth state listener will be notified and logic to
                         // handle the signed in user can be handled in the listener.
                         Log.d(TAG, "signInWithCredential:success");
-                        startActivity(new Intent(com.src.roadsafety.SignInActivity.this, com.src.roadsafety.MainActivity.class));
+                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
                         finish();
                     }
                 })
@@ -134,7 +127,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential", e);
-                        Toast.makeText(com.src.roadsafety.SignInActivity.this, "Authentication failed.",
+                        Toast.makeText(SignInActivity.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
