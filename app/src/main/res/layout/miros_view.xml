@@ -32,7 +32,7 @@
                 android:textSize="24sp" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ArticleImage"
                 android:layout_width="145dp"
                 android:layout_height="107dp"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/Reg_ID"
+                    android:id="@+id/Article"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/place_holder_text"
@@ -67,7 +67,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/Clinic_Contactnumber"
+                    android:id="@+id/Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

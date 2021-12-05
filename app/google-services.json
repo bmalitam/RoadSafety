@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "101368490910-vtgl191qor1coeho6947d61t7a295bt4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.src.roadsafety",
+            "certificate_hash": "a4cec6d38315189d93b20f94e6b2a82780aa2fa1"
+          }
+        },
+        {
           "client_id": "101368490910-jj9b1vdusjm6gn6157ej5pbshjvfgbo3.apps.googleusercontent.com",
           "client_type": 3
         }

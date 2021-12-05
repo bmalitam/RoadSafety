@@ -89,20 +89,20 @@ public class SignInActivity extends AppCompatActivity {
 
 //         Result returned from launching the Intent in signIn()
         if (requestCode == RC_SIGN_IN) {
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            try {
-//                // Google Sign In was successful, authenticate with Firebase
-//                GoogleSignInAccount account = task.getResult(ApiException.class);
-//                firebaseAuthWithGoogle(account);
-//
-//            } catch (ApiException e) {
-//                // Google Sign In failed, update UI appropriately
-//
-//                Log.w(TAG, "Google sign in failed", e);
-//
-//            }
-            startActivity(new Intent(SignInActivity.this, MainActivity.class));
-            finish();
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+
+                Log.w(TAG, "Google sign in failed", e);
+
+            }
+//            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+//            finish();
         }
 
 

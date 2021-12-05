@@ -17,31 +17,29 @@ package com.src.roadsafety;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
-//import com.tusi.OnlineDoc.DataLists.*;
-//import com.tusi.OnlineDoc.ui.SectionsPagerAdapter;
-//import com.tusi.OnlineDoc.viewholder.usertype;
-import com.src.roadsafety.databinding.ActivityMainBinding;
+
+import java.io.InputStream;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     final String[] userType = {ANONYMOUS};
     ImageButton miros;
     ImageButton instruct;
+    TextView Username;
+    ImageView userphoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,31 +62,42 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
 
-//        if (mFirebaseAuth.getCurrentUser() == null) {
-//            // Not signed in, launch the Sign In activity
-//            startActivity(new Intent(this, SignInActivity.class));
-//            finish();
-//            return;
-//        } else {
+        if (mFirebaseAuth.getCurrentUser() == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        } else {
+//
 ////
-//////
-////
-//        }
+//
+        }
 
 
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-//        mSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        mSignInClient = GoogleSignIn.getClient(this, gso);
 
         setContentView(R.layout.activity_main);
         miros = (ImageButton) findViewById(R.id.MIROS);
         instruct = (ImageButton) findViewById(R.id.DrivingInstruction);
+        Username = (TextView) findViewById(R.id.textView2);
+
+        if (mFirebaseAuth.getCurrentUser().getPhotoUrl()!=null)
+        {
+            userphoto = (ImageView) findViewById(R.id.UserPicture);
+            new DownloadImageTask(userphoto)
+                    .execute(mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
+
+        }
+        Username.setText(mFirebaseAuth.getCurrentUser().getDisplayName());
+
         miros.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
             {
 
-                Intent i = new Intent(MainActivity.this, MirosActivity.class);
+                Intent i = new Intent(MainActivity.this, ScrollScreen.class);
                 startActivity(i);
 
             }
@@ -137,6 +148,30 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return ANONYMOUS;
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
 

@@ -29,20 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-//import com.tusi.OnlineDoc.DataLists.*;
-//import com.tusi.OnlineDoc.ui.SectionsPagerAdapter;
-//import com.tusi.OnlineDoc.viewholder.usertype;
 
 
 public class InstructActivity extends AppCompatActivity {
 
-    private static final String TAG = "Instruct";
-    public static final String ANONYMOUS = "anonymous";
-    private SharedPreferences mSharedPreferences;
-    private GoogleSignInClient mSignInClient;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseDatabase mDatabase;
-    final String[] userType = {ANONYMOUS};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,31 +45,6 @@ public class InstructActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.sign_out_menu:
-                signOut();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void signOut() {
-        mFirebaseAuth.signOut();
-        mSignInClient.signOut();
-        startActivity(new Intent(this, SignInActivity.class));
-        finish();
-    }
 
 
 
