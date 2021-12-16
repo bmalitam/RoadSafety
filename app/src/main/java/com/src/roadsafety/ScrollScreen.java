@@ -62,7 +62,13 @@ public class ScrollScreen extends AppCompatActivity {
 
         mBinding = ScrollScreenBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        MESSAGES_CHILD = "miros";
+
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        MESSAGES_CHILD = "Database/miros";
 
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
@@ -72,6 +78,7 @@ public class ScrollScreen extends AppCompatActivity {
         // Initialize Realtime Database
         mDatabase = FirebaseDatabase.getInstance();
         DatabaseReference messagesRef = mDatabase.getReference().child(MESSAGES_CHILD);
+
         messagesRef.get().addOnCompleteListener(task -> {
             if (task.getResult().getValue()==null) {
                 mBinding.IntructorLoader.setVisibility(ProgressBar.INVISIBLE);
@@ -93,7 +100,7 @@ public class ScrollScreen extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(mirosScreenViewHolder vh, int position, MirosList message) {
-
+                mBinding.IntructorLoader.setVisibility(ProgressBar.INVISIBLE);
                 vh.bindMessage(message);
 
             }
@@ -111,11 +118,9 @@ public class ScrollScreen extends AppCompatActivity {
         mMirosContent.registerAdapterDataObserver(
                 new MyScrollToBottomObserver(mBinding.messageRecyclerViewChoiceScreen, mMirosContent, mLinearLayoutManager));
 
-
+        mMirosContent.startListening();
 
     }
-
-
 
 
 

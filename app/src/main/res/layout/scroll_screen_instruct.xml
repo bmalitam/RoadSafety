@@ -33,17 +33,12 @@
                 android:text="Driving Information"
                 android:textColor="@android:color/background_light"
                 android:textSize="24sp" />
-        </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <WebView
-                android:id="@+id/wbview"
+            <com.github.barteksc.pdfviewer.PDFView
+                android:id="@+id/pdfView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
     </LinearLayout>
 

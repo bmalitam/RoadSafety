@@ -13,13 +13,13 @@ public class mirosScreenViewHolder extends RecyclerView.ViewHolder {
     TextView Articletitle;
     TextView Article;
     TextView Date;
-    ImageView Image;
+
     public mirosScreenViewHolder(View v) {
         super(v);
         Articletitle = (TextView) itemView.findViewById(R.id.ArticleTitle);
         Article = (TextView) itemView.findViewById(R.id.Article);
         Date = (TextView) itemView.findViewById(R.id.Date);
-        Image = (ImageView) itemView.findViewById(R.id.ArticleImage);
+
     }
 
     public void bindMessage(MirosList miroslist) {
