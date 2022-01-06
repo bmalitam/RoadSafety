@@ -15,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "101368490910-es4rccrplef9deqengtc9aftrt3253pp.apps.googleusercontent.com",
+          "client_id": "101368490910-8boo4ca77li8iiuo8goa448ob9f9asp8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.src.roadsafety",
@@ -23,11 +23,19 @@
           }
         },
         {
-          "client_id": "101368490910-vtgl191qor1coeho6947d61t7a295bt4.apps.googleusercontent.com",
+          "client_id": "101368490910-d25ade1penqnsh278mfe7ashca10h65m.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.src.roadsafety",
             "certificate_hash": "a4cec6d38315189d93b20f94e6b2a82780aa2fa1"
+          }
+        },
+        {
+          "client_id": "101368490910-sr7kg1b36jl8n5n2qg5per9m48l7d6ct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.src.roadsafety",
+            "certificate_hash": "52ff219d069b7767b6adb58ee7ad6fdc6c789ac4"
           }
         },
         {

@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         mSignInClient = GoogleSignIn.getClient(this, gso);
 
         setContentView(R.layout.activity_main);
+
+
         miros = (ImageButton) findViewById(R.id.MIROS);
         instruct = (ImageButton) findViewById(R.id.DrivingInstruction);
         Username = (TextView) findViewById(R.id.textView2);

@@ -4,7 +4,7 @@ plugins {
 
 android {
     signingConfigs {
-        debug {
+        release {
             storeFile file('C:\\Repo\\RoadSafety\\appkey.jks')
             storePassword '123456'
             keyAlias 'key0'
